@@ -11,6 +11,7 @@ use App\Article;
 use App\Category;
 use App\Tag;
 use App\Image;
+use App\Promotion;
 use Laracasts\Flash\Flash;
 use App\Http\Requests\ArticleRequest;
 
@@ -19,11 +20,12 @@ class ArticlesController extends Controller
 
    	public function index(Request $request)
   	{
-      $articles = Article::Search($request->title)->orderBy('id','DESC')->paginate(5);
+      $articles = Article::Search($request->title)->orderBy('id','DESC')->paginate(4);
       $articles->each(function($articles)
       {
         $articles->Category;
         $articles->user;
+        $articles->Promotion;
       
       });
       
@@ -39,11 +41,13 @@ class ArticlesController extends Controller
   public function create()
     {
     	$categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
+      $promotions = Promotion::orderBy('name', 'ASC')->pluck('name', 'id');
       $tags	    = Tag::orderBy('name','ASC')->pluck('name', 'id');
 
     	return view('admin.articles.create')
     		->with('categories', $categories)
-    		->with('tags', $tags);
+    		->with('tags', $tags)
+        ->with('promotions',$promotions);
 
     }
  

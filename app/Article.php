@@ -36,6 +36,11 @@ class Article extends Model
     	return $this->belongsTo('App\Category');
 
     }
+    public function promotion(){
+        #Los Articulo solo puede tenert una Categoria 
+        return $this->belongsTo('App\Promotion');
+
+    }
     public function user(){
     	#Los Articulos solo puede tener un Usuario 
     	return $this->belongsTo('App\User');

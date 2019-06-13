@@ -7,6 +7,7 @@ use App\Article;
 use App\Category;
 use App\Tag;
 use App\Image;
+use App\Promotion;
 use Laracasts\Flash\Flash;
 use App\Http\Requests\ArticleRequest;
 use Carbon\Carbon;
@@ -36,7 +37,7 @@ class FrontController extends Controller
     	});
 
 
-    	return view('admin.index')
+    	return view('front.index')
     		->with('articles', $articles);
 
     }
@@ -50,7 +51,7 @@ class FrontController extends Controller
             $articles->images;
         });
 
-        return view('admin.index')
+        return view('front.index')
             ->with('articles', $articles);
 
 
@@ -65,9 +66,23 @@ class FrontController extends Controller
 
         });
 
-        return view('admin.index')
+        return view('front.index')
             ->with('articles', $articles);
 
+
+    }
+    public function searchPromotion($name)
+    {
+        $promotion  =Promotion::SearchPromotion($name)->first();
+        $articles   = $promotion->articles()->paginate(4);
+        $articles->each(function($articles){
+            $articles->tag;
+            $articles->images;
+
+        });
+
+        return view('front.index')
+            ->with('articles', $articles);
 
     }
 

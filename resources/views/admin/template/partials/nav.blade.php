@@ -1,12 +1,10 @@
 <!-- Este el menu de navegacion -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-primary bg-withe">
+
   <div class="container">
     <div class="row">
 
-    <a class="navbar-brand" href="/">
-      <img src="images/front/logo1.png" alt="Fazt Logo"> 
-    </a>
-   
+       
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Boton de navegacion">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -33,9 +31,7 @@
         <li class="nav-item">
           <a class="nav-link" href=" {{route('tags.index')}} ">Tag</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{route('login')}}">Iniciar sessión</a>
-        </li>
+       
       </ul> 
     </div>
     </div>

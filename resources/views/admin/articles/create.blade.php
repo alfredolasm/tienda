@@ -15,6 +15,10 @@
 			{!! Form::label('name','Categorias')  !!}
 			{!! Form::select('category_id', $categories,null,['class' => 'form-control select-category', 'required'])  !!}
 		</div>
+		<div class="form-group ">
+			{!! Form::label('name','Promoción')  !!}
+			{!! Form::select('promotion_id', $promotions,null,['class' => 'form-control select-promotion'])  !!}
+		</div>
 
 		<div class="form-group ">
 			{!!  Form::label('content', 'Contenido') !!}
@@ -60,6 +64,10 @@
 		});
 
 		$('.select-category').chosen({
+			no_results_text			 :'No se ha encontrado resultado' 
+		});
+
+		$('.select-promotion').chosen({
 			no_results_text			 :'No se ha encontrado resultado' 
 		});
 

@@ -36,6 +36,13 @@ Route::get('tags/{name}',[
 
 ]);
 
+Route::get('promotions/{name}', [
+    'uses'  =>'FrontController@searchPromotion',
+    'as'    =>'front.search.promotion'
+
+
+]);
+
 Route::get('articles/{slug}',[
     'uses'  => 'FrontController@viewArticle',
     'as'    => 'front.view.article'
