@@ -84,7 +84,7 @@
 			<!--<div class="col align-self-end col-md-4">
 				<aside>
 					@include('admin.template.partials.aside')
-				</aside>
+				</aside> 
 			</div>
 			-->
 		</div>
