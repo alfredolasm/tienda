@@ -1,60 +1,95 @@
 <?php
+@extends('front.template.main')
 
-/**
- * Laravel - A PHP Framework For Web Artisans
- *
- * @package  Laravel
- * @author   Taylor Otwell <taylor@laravel.com>
- */
+@section('title','Blog de cv Código Víctoria')
+   
+@section('content')
 
-define('LARAVEL_START', microtime(true));
+	  	<div class="row justify-content-center p-3" >
+			@foreach($articles as $article)
+				<div class="row">	
+					<div class="col-lg-4">
+						<div class="d-none d-lg-block col-lg-auto">
+								<div class="card border-primary mb-3" style="max-width: 30rem;">
+									<a  href=" {{route('front.view.article', $article->slug)}} ">
+										@foreach($article->images as $image)
+											<img class="img-thumbnail " style="height: 100%; width: 100%; display: center;" src="{{ asset('images/articles/'.$image->name) }}" alt="Card image">
+										@endforeach
+									</a>
+																		
+									<div class="card-footer text-muted">
+										<div class="row  justify-content-between">
+											<div class="col-auto"><small class="text-muted"><a href=" {{route('front.view.article', $article->slug)}} ">
+											<strong>{{ $article->title }}</strong>
+											</a></small></div>
+										</div>
+									 	<div class="row  justify-content-between">
+									 		<div class="col-6"><small class="text-muted"><a href="{{route('front.search.category', $article->category->name)}} ">{{$article->category->name}}</a></small></div> 
+									 		<div class="col-6"><small class="text-muted"> {{$article->created_at->diffForHumans()}} </small></div>
+									 	</div>
+									</div>
+								</div>
+							</div>	
+						
+							<div class="d-none d-lg-block col-lg-auto">
+								<div class="card border-primary mb-3" style="max-width: 30rem;">
+									<a  href=" {{route('front.view.article', $article->slug)}} ">
+										@foreach($article->images as $image)
+											<img class="img-thumbnail mx-auto d-block" style="height: 100%; width: 100%; display: center;" src="{{ asset('images/articles/'.$image->name) }}" alt="Card image">
+										@endforeach
+									</a>
+																		
+									<div class="card-footer text-muted">
+										<div class="row  justify-content-between">
+											<div class="col-auto"><small class="text-muted"><a href=" {{route('front.view.article', $article->slug)}} ">
+											<strong>{{ $article->title }}</strong>
+											</a></small></div>
+										</div>
+									 	<div class="row  justify-content-between">
+									 		<div class="col-6"><small class="text-muted"><a href="{{route('front.search.category', $article->category->name)}} ">{{$article->category->name}}</a></small></div> 
+									 		<div class="col-6"><small class="text-muted"> {{$article->created_at->diffForHumans()}} </small></div>
+									 	</div>
+									</div>
+								</div>
+							</div>	
+					</div>
+				
+					<div class="col-lg-8">
+						<div class="card border-primary mb-3" style="max-width: 30rem;">
+							<a  href=" {{route('front.view.article', $article->slug)}} ">
+								@foreach($article->images as $image)
+									<img class="img-thumbnail " style="height: 100%; width: 100%; display: center;" src="{{ asset('images/articles/'.$image->name) }}" alt="Card image">
+								@endforeach
+							</a>
+																
+							<div class="card-footer text-muted">
+								<div class="row  justify-content-between">
+									<div class="col-auto"><small class="text-muted"><a href=" {{route('front.view.article', $article->slug)}} ">
+									<strong>{{ $article->title }}</strong>
+									</a></small></div>
+								</div>
+							 	<div class="row  justify-content-between">
+							 		<div class="col-6"><small class="text-muted"><a href="{{route('front.search.category', $article->category->name)}} ">{{$article->category->name}}</a></small></div> 
+							 		<div class="col-6"><small class="text-muted"> {{$article->created_at->diffForHumans()}} </small></div>
+							 	</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			@endforeach
 
-/*
-|--------------------------------------------------------------------------
-| Register The Auto Loader
-|--------------------------------------------------------------------------
-|
-| Composer provides a convenient, automatically generated class loader for
-| our application. We just need to utilize it! We'll simply require it
-| into the script here so that we don't have to worry about manual
-| loading any of our classes later on. It feels great to relax.
-|
-*/
+			</div>	
+			{!! $articles->render() !!} 
+			
+			<!--<div class="col align-self-end col-md-4">
+				<aside>
+					@include('admin.template.partials.aside')
+				</aside>
+			</div>
+			-->
+		</div>
+	
 
-require __DIR__.'/../vendor/autoload.php';
-
-/*
-|--------------------------------------------------------------------------
-| Turn On The Lights
-|--------------------------------------------------------------------------
-|
-| We need to illuminate PHP development, so let us turn on the lights.
-| This bootstraps the framework and gets it ready for use, then it
-| will load up this application so that we can run it and send
-| the responses back to the browser and delight our users.
-|
-*/
-
-$app = require_once __DIR__.'/../bootstrap/app.php';
-
-/*
-|--------------------------------------------------------------------------
-| Run The Application
-|--------------------------------------------------------------------------
-|
-| Once we have the application, we can handle the incoming request
-| through the kernel, and send the associated response back to
-| the client's browser allowing them to enjoy the creative
-| and wonderful application we have prepared for them.
-|
-*/
-
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
-
-$response = $kernel->handle(
-    $request = Illuminate\Http\Request::capture()
-);
-
-$response->send();
-
-$kernel->terminate($request, $response);
+   
+@endsection
+  
